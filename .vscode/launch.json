@@ -5,11 +5,25 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Launch",
+            "program": "/code/jammy_webserver/21/epoll_server",
+            "args": [
+                "0.0.0.0",
+                "8888"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "/code/jammy_webserver/21/epoll_server",
-            "args": ["0.0.0.0","8888"],
+            "args": [
+                "0.0.0.0",
+                "8888"
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
@@ -28,6 +42,5 @@
                 }
             ]
         }
-
     ]
 }

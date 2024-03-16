@@ -15,30 +15,22 @@ private:
 
 #include "InetAddr.h"
 
-InetAddr::InetAddr(const char*ip,uint16_t port){
-    bzero(&addr_,sizeof(addr_));
-    addr_.sin_family = AF_INET;
-    addr_.sin_port = htons(port);
-    inet_pton(AF_INET,ip,&addr_.sin_addr);
+InetAddr::InetAddr(const char *ip, uint16_t port) {
+  bzero(&addr_, sizeof(addr_));
+  addr_.sin_family = AF_INET;
+  addr_.sin_port = htons(port);
+  inet_pton(AF_INET, ip, &addr_.sin_addr);
 }
 
-InetAddr::InetAddr(sockaddr_in addr_):addr_(addr_){
-    
+InetAddr::InetAddr(sockaddr_in addr_) : addr_(addr_) {}
+
+InetAddr::InetAddr() {}
+
+const char *InetAddr::ip() const { return inet_ntoa(addr_.sin_addr); }
+
+u_int16_t InetAddr::port() const {
+  u_int16_t port = ntohs(addr_.sin_port);
+  return port;
 }
 
-InetAddr::InetAddr(){
-
-}
-
-const char *InetAddr::ip()const{
-    return inet_ntoa(addr_.sin_addr);
-}
-
-u_int16_t InetAddr::port()const{
-    u_int16_t port = ntohs(addr_.sin_port);
-    return port;
-}
-
-sockaddr *InetAddr::addr(){
-    return (sockaddr *)&addr_;
-}
+sockaddr *InetAddr::addr() { return (sockaddr *)&addr_; }
