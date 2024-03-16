@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 include_directories(include build)
-configure_file("config.h.in" "config.h")
+# configure_file("config.h.in" "config.h")
 
 
 add_executable(jammy_server 
@@ -18,4 +18,3 @@ add_executable(jammy_server
 add_executable(jammy_client "${PROJECT_SOURCE_DIR}/src/epoll_client.cpp" "${PROJECT_SOURCE_DIR}/src/Buffer.cpp")
 
 target_link_libraries(jammy_server pthread)
-target_link_libraries(test pthread)

@@ -1,0 +1,4 @@
+/code/jammy_webserver/build/CMakeFiles/rebuild_cache.dir
+/code/jammy_webserver/build/CMakeFiles/edit_cache.dir
+/code/jammy_webserver/build/CMakeFiles/jammy_client.dir
+/code/jammy_webserver/build/CMakeFiles/jammy_server.dir
