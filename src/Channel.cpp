@@ -19,102 +19,73 @@ public:
     uint32_t revents();
 };*/
 
-
-Channel::Channel(Socket *sock,EpollLoop *epollLoop):sock_(sock),epollLoop_(epollLoop){
-
-}
-Channel::~Channel(){
-
-}
-void Channel::setInEpoll(bool on){
-    isInEpoll_ = on;
-}
-void Channel::enableReading(){
-    events_ |=EPOLLIN;
-    if(epollLoop_->getEp()!=nullptr)
-        epollLoop_->getEp()->updateChannel(this);
-    
+Channel::Channel(Socket *sock, EpollLoop *epollLoop)
+    : sock_(sock), epollLoop_(epollLoop) {}
+Channel::~Channel() {}
+void Channel::setInEpoll(bool on) { isInEpoll_ = on; }
+void Channel::enableReading() {
+  events_ |= EPOLLIN;
+  if (epollLoop_->getEp() != nullptr)
+    epollLoop_->getEp()->updateChannel(this);
 }
 
-void Channel::setet(){
-    events_|=EPOLLET;
-    if(epollLoop_->getEp()!=nullptr)
-        epollLoop_->getEp()->updateChannel(this);
-    
+void Channel::enableET() {
+  events_ |= EPOLLET;
+  if (epollLoop_->getEp() != nullptr)
+    epollLoop_->getEp()->updateChannel(this);
 }
 //设置监听写事件
-void Channel::enableWriting(){
-    events_|=EPOLLOUT;
-    if(epollLoop_->getEp()!=nullptr)
-        epollLoop_->getEp()->updateChannel(this);
+void Channel::enableWriting() {
+  events_ |= EPOLLOUT;
+  if (epollLoop_->getEp() != nullptr)
+    epollLoop_->getEp()->updateChannel(this);
 }
 //取消监听写事件
-void Channel::disableWriting(){
-    events_&=~EPOLLOUT;
-    if(epollLoop_->getEp()!=nullptr)
-        epollLoop_->getEp()->updateChannel(this);
+void Channel::disableWriting() {
+  events_ &= ~EPOLLOUT;
+  if (epollLoop_->getEp() != nullptr)
+    epollLoop_->getEp()->updateChannel(this);
 }
 
 //屏蔽当前信道
-void Channel::disableAll(){
-    events_ &= 0;
-    if(epollLoop_->getEp()!=nullptr)
-        epollLoop_->getEp()->updateChannel(this);
+void Channel::disableAll() {
+  events_ &= 0;
+  if (epollLoop_->getEp() != nullptr)
+    epollLoop_->getEp()->updateChannel(this);
 }
-bool Channel::inEpoll()const{
-    return isInEpoll_;
-}
-void Channel::setRevents(uint32_t rev){
-    revents_ = rev;
-}
-uint32_t Channel::events()const{
-    return events_;
-}
-uint32_t Channel ::revents()const{
-    return revents_;
-}
-void Channel ::setValid(bool on){
-    valid_ = on;
-}
-int Channel ::fd()const{
-    return sock_->fd();
+bool Channel::isInEpoll() const { return isInEpoll_; }
+void Channel::setRevents(uint32_t rev) { revents_ = rev; }
+uint32_t Channel::events() const { return events_; }
+uint32_t Channel ::revents() const { return revents_; }
+void Channel ::setValid(bool on) { valid_ = on; }
+int Channel ::fd() const { return sock_->fd(); }
+
+bool Channel::isValid() { return valid_; }
+
+void Channel::setReadcallback(std::function<void()> callback) {
+  readcallback_ = callback;
 }
 
-bool Channel::isValid(){
-    return valid_;
-}
+std::function<void()> Channel::getReadcallback() { return readcallback_; }
 
+void Channel::setWritecallback(std::function<void()> callback) {
+  writecallback_ = callback;
+}
+std::function<void()> Channel::getWritecallback() { return writecallback_; }
+void Channel::setClosecallback(std::function<void()> callback) {
+  closeCallBack_ = callback;
+}
+std::function<void()> Channel::getClosecallback() { return closeCallBack_; }
 
-void Channel::setReadcallback(std::function<void()> callback){
-    readcallback_  = callback;
-}
-
-std::function<void()> Channel::getReadcallback(){
-    return readcallback_;
-}
-
-void Channel::setWritecallback(std::function<void()> callback){
-    writecallback_ = callback;
-}
-std::function<void()> Channel::getWritecallback(){
-    return writecallback_;
-}
-void Channel::setClosecallback(std::function<void()> callback){
-    closeCallBack_  = callback;
-}
-std::function<void()> Channel::getClosecallback(){
-    return closeCallBack_;
-}
-
-void Channel::handleEvent(){
-    //读事件触发
-    if(revents_&EPOLLIN)
-        readcallback_();
-    else if(revents_&EPOLLOUT)
-        writecallback_();
-    else if(revents_&EPOLLRDHUP){
-        closeCallBack_();
-    }
+void Channel::handleEvent() {
+  //读事件触发
+  if (revents_ & EPOLLIN)
+    readcallback_();
+  else if (revents_ & EPOLLOUT)
+    writecallback_();
+  else if (revents_ & EPOLLRDHUP) {
+    closeCallBack_();
+  }
 }
 //用于接受客户端消息请求
 // void Channel::onMessage(){
@@ -127,7 +98,8 @@ void Channel::handleEvent(){
 //             if(num==0){//对方关闭连接
 //                 epollLoop_->getEp()->removeChannel(this);
 //                 return;
-//             }else if(num<0 && (errno==EAGAIN||errno==EWOULDBLOCK)){//内核缓冲区读取完毕
+//             }else if(num<0 &&
+//             (errno==EAGAIN||errno==EWOULDBLOCK)){//内核缓冲区读取完毕
 //                 break;
 //             }else{
 //                 printf("[SERVER] : Recv : %s\n",buff_);
@@ -147,6 +119,7 @@ void Channel::handleEvent(){
 //     int clifd = servSock->accept(cliaddr);
 //     setnonblocking(clifd);
 //     Socket *cliSock = new Socket(clifd,cliaddr);
-//     printf("[SERVER] : Client Connect Success, Ip = %s, Port = %hu\n",cliaddr.ip(),cliaddr.port());
-//     Connection *cliConnection = new Connection(epollLoop_,cliSock);
+//     printf("[SERVER] : Client Connect Success, Ip = %s, Port =
+//     %hu\n",cliaddr.ip(),cliaddr.port()); Connection *cliConnection = new
+//     Connection(epollLoop_,cliSock);
 // }

@@ -9,12 +9,12 @@ include_directories(include build)
 
 
 add_executable(jammy_server 
-"${PROJECT_SOURCE_DIR}/src/epoll_server.cpp" "${PROJECT_SOURCE_DIR}/src/EchoServer.cpp" "${PROJECT_SOURCE_DIR}/src/TcpServer.cpp" 
+"${PROJECT_SOURCE_DIR}/src/jammy_server.cpp" "${PROJECT_SOURCE_DIR}/src/EchoServer.cpp" "${PROJECT_SOURCE_DIR}/src/TcpServer.cpp" 
 "${PROJECT_SOURCE_DIR}/src/Acceptor.cpp" "${PROJECT_SOURCE_DIR}/src/Connection.cpp" "${PROJECT_SOURCE_DIR}/src/Channel.cpp"
 "${PROJECT_SOURCE_DIR}/src/ThreadPool.cpp" "${PROJECT_SOURCE_DIR}/src/EpollLoop.cpp" "${PROJECT_SOURCE_DIR}/src/Epoll.cpp" 
 "${PROJECT_SOURCE_DIR}/src/Socket.cpp" "${PROJECT_SOURCE_DIR}/src/InetAddr.cpp" "${PROJECT_SOURCE_DIR}/src/TimeStamp.cpp"
 "${PROJECT_SOURCE_DIR}/src/Buffer.cpp"
 )
-add_executable(jammy_client "${PROJECT_SOURCE_DIR}/src/epoll_client.cpp" "${PROJECT_SOURCE_DIR}/src/Buffer.cpp")
+add_executable(jammy_client "${PROJECT_SOURCE_DIR}/src/jammy_client.cpp" "${PROJECT_SOURCE_DIR}/src/Buffer.cpp")
 
 target_link_libraries(jammy_server pthread)

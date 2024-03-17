@@ -105,7 +105,7 @@ CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o
 CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o
  ../include/TimeStamp.h
  /code/jammy_webserver/src/TimeStamp.cpp
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o
  ../include/Acceptor.h
  ../include/Buffer.h
  ../include/Channel.h
@@ -119,4 +119,4 @@ CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o
  ../include/ThreadPool.h
  ../include/TimeStamp.h
  ../include/common.h
- /code/jammy_webserver/src/epoll_server.cpp
+ /code/jammy_webserver/src/jammy_server.cpp

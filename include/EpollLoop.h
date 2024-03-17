@@ -13,46 +13,67 @@
 #include <sys/eventfd.h>
 #include <sys/timerfd.h>
 
+//前置声明
 class Connection;
-using spConnection = std::shared_ptr<Connection>;
 class Channel;
 class Epoll;
+// Connection类的共享指针
+using spConnection = std::shared_ptr<Connection>;
 class EpollLoop {
 
 private:
-  std::unique_ptr<Epoll> ep_; //每个epoll对象对应一个epollloop事件循环
-  std::function<void()> epollTimeOutCallback_; // EPOLL超时回调函数
+  // EpollLoop类封装的Epoll，是1对1关系
+  std::unique_ptr<Epoll> ep_;
+  // EPOLL类调用loop函数时超时的回调函数
+  std::function<void()> epollTimeOutCallback_;
 
-  //任务队列，主要用于处理工作线程的对Connection类的输出缓冲区输出
-  //将这类工作移交给IO线程处理
+  //保护任务队列的互斥量
   std::mutex mut_;
+  //任务队列，其中添加的任务主要都是来自工作线程的Connection::append
+  //即对Connection输出缓冲区进行填充
   std::deque<std::function<void()>> taskque_;
-  std::unique_ptr<Channel> eventChannel_; //对输出缓冲区的写Channel类
+  //对Connection输出缓冲区进行填充的channel
+  std::unique_ptr<Channel> connOutBuffChannel_;
 
-  std::mutex timerMut_; //用于保护多线程下cons_写入的问题
-  std::map<Socket *, spConnection> cons_; //当前EpollLoop类接受连接的客户
+  //用于保护多线程下cons_写入cons_的问题
+  std::mutex timerMut_;
+  //当前EpollLoop类接受连接的客户
+  std::map<Socket *, spConnection> cons_;
 
-  bool isMainLoop_; //是否为主事件循环
-  time_t clock_;    //定时器到期时间
-  time_t timeout_;  //连接多久算超时
-  std::unique_ptr<Channel>
-      timerChannel_; //定时器回调函数，如果当前是从事件循环，则主要用于删除不活跃连接
-  std::function<void(Socket *)>
-      connTimeoutCallBack; //当存在超时连接时调用的回调函数
+  //是否为主事件循环，即主Reactor
+  bool isMainLoop_;
+  //定时器到期时间，到期时检查所有连接的connection是否超时
+  time_t clock_;
+  //连接超时时长
+  time_t timeout_;
+  // timerfd对应的Channel
+  std::unique_ptr<Channel> timerChannel_;
+  //定时器回调函数，如果当前是从事件循环，则主要用于删除不活跃连接
+  //当存在超时连接时调用的回调函数
+  std::function<void(Socket *)> connTimeoutCallBack_;
 
 public:
-  void setEpollTimeOutCallback(std::function<void()> func);
+  //构造函数参数分别为 是否主循环，定时器到期时间，连接超时时间
   EpollLoop(bool isMainLoop, time_t clock, time_t timeout);
+  //析构函数
   ~EpollLoop();
+  //开始事件循环,会调用Epoll::loop函数
   void run();
+  //获取Epoll指针
   Epoll *getEp();
+  //往任务队列中加入任务
   void addTask(std::function<void()>);
-  void
-  handleEventChannelMsg(); // eventChannel读事件发生，从任务队列中取出任务进行处理
-  void handleTimerChannelMsg(); //处理timerChannel_定时器到期事件
-
-  void appendConn(Socket *, spConnection); //往当前map中添加连接
+  // eventChannel读事件发生，从任务队列中取出任务进行处理
+  void handleConnOutbufflMsg();
+  //处理timerChannel_定时器到期事件
+  void handleTimerChannelMsg();
+  //往当前map中添加连接
+  void appendConn(Socket *, spConnection);
+  //往当前map中删除连接
   void removeConn(Socket *cliSocket);
+  //设置Epoll::loop超时的回调函数
+  void setEpollTimeOutCallback(std::function<void()> func);
+  // map中的连接超时的回调函数
   void setConnTimeoutCallBack(std::function<void(Socket *)> func);
 };
 

@@ -16,9 +16,9 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/code/jammy_webserver/src/TcpServer.cpp" "/code/jammy_webserver/build/CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o"
   "/code/jammy_webserver/src/ThreadPool.cpp" "/code/jammy_webserver/build/CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o"
   "/code/jammy_webserver/src/TimeStamp.cpp" "/code/jammy_webserver/build/CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o"
-  "/code/jammy_webserver/src/epoll_server.cpp" "/code/jammy_webserver/build/CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o"
+  "/code/jammy_webserver/src/jammy_server.cpp" "/code/jammy_webserver/build/CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

@@ -11,7 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o"
   "CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o"
   "CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o"
-  "CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o"
+  "CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o"
   "jammy_server"
   "jammy_server.pdb"
 )

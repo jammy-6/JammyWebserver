@@ -57,41 +57,41 @@ include CMakeFiles/jammy_client.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/jammy_client.dir/flags.make
 
-CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o: CMakeFiles/jammy_client.dir/flags.make
-CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o: ../src/epoll_client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o -c /code/jammy_webserver/src/epoll_client.cpp
+CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o: CMakeFiles/jammy_client.dir/flags.make
+CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o: ../src/jammy_client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o -c /code/jammy_webserver/src/jammy_client.cpp
 
-CMakeFiles/jammy_client.dir/src/epoll_client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_client.dir/src/epoll_client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/epoll_client.cpp > CMakeFiles/jammy_client.dir/src/epoll_client.cpp.i
+CMakeFiles/jammy_client.dir/src/jammy_client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_client.dir/src/jammy_client.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/jammy_client.cpp > CMakeFiles/jammy_client.dir/src/jammy_client.cpp.i
 
-CMakeFiles/jammy_client.dir/src/epoll_client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_client.dir/src/epoll_client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/epoll_client.cpp -o CMakeFiles/jammy_client.dir/src/epoll_client.cpp.s
+CMakeFiles/jammy_client.dir/src/jammy_client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_client.dir/src/jammy_client.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/jammy_client.cpp -o CMakeFiles/jammy_client.dir/src/jammy_client.cpp.s
 
 CMakeFiles/jammy_client.dir/src/Buffer.cpp.o: CMakeFiles/jammy_client.dir/flags.make
 CMakeFiles/jammy_client.dir/src/Buffer.cpp.o: ../src/Buffer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/jammy_client.dir/src/Buffer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_client.dir/src/Buffer.cpp.o -c /code/jammy_webserver/src/Buffer.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_client.dir/src/Buffer.cpp.o -c /code/jammy_webserver/src/Buffer.cpp
 
 CMakeFiles/jammy_client.dir/src/Buffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_client.dir/src/Buffer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Buffer.cpp > CMakeFiles/jammy_client.dir/src/Buffer.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Buffer.cpp > CMakeFiles/jammy_client.dir/src/Buffer.cpp.i
 
 CMakeFiles/jammy_client.dir/src/Buffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_client.dir/src/Buffer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Buffer.cpp -o CMakeFiles/jammy_client.dir/src/Buffer.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Buffer.cpp -o CMakeFiles/jammy_client.dir/src/Buffer.cpp.s
 
 # Object files for target jammy_client
 jammy_client_OBJECTS = \
-"CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o" \
+"CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o" \
 "CMakeFiles/jammy_client.dir/src/Buffer.cpp.o"
 
 # External object files for target jammy_client
 jammy_client_EXTERNAL_OBJECTS =
 
-jammy_client: CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o
+jammy_client: CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o
 jammy_client: CMakeFiles/jammy_client.dir/src/Buffer.cpp.o
 jammy_client: CMakeFiles/jammy_client.dir/build.make
 jammy_client: CMakeFiles/jammy_client.dir/link.txt

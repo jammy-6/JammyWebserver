@@ -5,7 +5,7 @@ CMakeFiles/jammy_client.dir/src/Buffer.cpp.o: ../include/Buffer.h
 CMakeFiles/jammy_client.dir/src/Buffer.cpp.o: ../include/common.h
 CMakeFiles/jammy_client.dir/src/Buffer.cpp.o: ../src/Buffer.cpp
 
-CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o: ../include/Buffer.h
-CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o: ../include/common.h
-CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o: ../src/epoll_client.cpp
+CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o: ../include/Buffer.h
+CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o: ../include/common.h
+CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o: ../src/jammy_client.cpp
 

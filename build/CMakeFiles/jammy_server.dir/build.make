@@ -57,178 +57,178 @@ include CMakeFiles/jammy_server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/jammy_server.dir/flags.make
 
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: CMakeFiles/jammy_server.dir/flags.make
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../src/epoll_server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o -c /code/jammy_webserver/src/epoll_server.cpp
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: CMakeFiles/jammy_server.dir/flags.make
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../src/jammy_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o -c /code/jammy_webserver/src/jammy_server.cpp
 
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/epoll_server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/epoll_server.cpp > CMakeFiles/jammy_server.dir/src/epoll_server.cpp.i
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/jammy_server.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/jammy_server.cpp > CMakeFiles/jammy_server.dir/src/jammy_server.cpp.i
 
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/epoll_server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/epoll_server.cpp -o CMakeFiles/jammy_server.dir/src/epoll_server.cpp.s
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/jammy_server.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/jammy_server.cpp -o CMakeFiles/jammy_server.dir/src/jammy_server.cpp.s
 
 CMakeFiles/jammy_server.dir/src/EchoServer.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/EchoServer.cpp.o: ../src/EchoServer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/jammy_server.dir/src/EchoServer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/EchoServer.cpp.o -c /code/jammy_webserver/src/EchoServer.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/EchoServer.cpp.o -c /code/jammy_webserver/src/EchoServer.cpp
 
 CMakeFiles/jammy_server.dir/src/EchoServer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/EchoServer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/EchoServer.cpp > CMakeFiles/jammy_server.dir/src/EchoServer.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/EchoServer.cpp > CMakeFiles/jammy_server.dir/src/EchoServer.cpp.i
 
 CMakeFiles/jammy_server.dir/src/EchoServer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/EchoServer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/EchoServer.cpp -o CMakeFiles/jammy_server.dir/src/EchoServer.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/EchoServer.cpp -o CMakeFiles/jammy_server.dir/src/EchoServer.cpp.s
 
 CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o: ../src/TcpServer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o -c /code/jammy_webserver/src/TcpServer.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o -c /code/jammy_webserver/src/TcpServer.cpp
 
 CMakeFiles/jammy_server.dir/src/TcpServer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/TcpServer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/TcpServer.cpp > CMakeFiles/jammy_server.dir/src/TcpServer.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/TcpServer.cpp > CMakeFiles/jammy_server.dir/src/TcpServer.cpp.i
 
 CMakeFiles/jammy_server.dir/src/TcpServer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/TcpServer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/TcpServer.cpp -o CMakeFiles/jammy_server.dir/src/TcpServer.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/TcpServer.cpp -o CMakeFiles/jammy_server.dir/src/TcpServer.cpp.s
 
 CMakeFiles/jammy_server.dir/src/Acceptor.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/Acceptor.cpp.o: ../src/Acceptor.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/jammy_server.dir/src/Acceptor.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Acceptor.cpp.o -c /code/jammy_webserver/src/Acceptor.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Acceptor.cpp.o -c /code/jammy_webserver/src/Acceptor.cpp
 
 CMakeFiles/jammy_server.dir/src/Acceptor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/Acceptor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Acceptor.cpp > CMakeFiles/jammy_server.dir/src/Acceptor.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Acceptor.cpp > CMakeFiles/jammy_server.dir/src/Acceptor.cpp.i
 
 CMakeFiles/jammy_server.dir/src/Acceptor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/Acceptor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Acceptor.cpp -o CMakeFiles/jammy_server.dir/src/Acceptor.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Acceptor.cpp -o CMakeFiles/jammy_server.dir/src/Acceptor.cpp.s
 
 CMakeFiles/jammy_server.dir/src/Connection.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/Connection.cpp.o: ../src/Connection.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/jammy_server.dir/src/Connection.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Connection.cpp.o -c /code/jammy_webserver/src/Connection.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Connection.cpp.o -c /code/jammy_webserver/src/Connection.cpp
 
 CMakeFiles/jammy_server.dir/src/Connection.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/Connection.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Connection.cpp > CMakeFiles/jammy_server.dir/src/Connection.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Connection.cpp > CMakeFiles/jammy_server.dir/src/Connection.cpp.i
 
 CMakeFiles/jammy_server.dir/src/Connection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/Connection.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Connection.cpp -o CMakeFiles/jammy_server.dir/src/Connection.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Connection.cpp -o CMakeFiles/jammy_server.dir/src/Connection.cpp.s
 
 CMakeFiles/jammy_server.dir/src/Channel.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/Channel.cpp.o: ../src/Channel.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/jammy_server.dir/src/Channel.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Channel.cpp.o -c /code/jammy_webserver/src/Channel.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Channel.cpp.o -c /code/jammy_webserver/src/Channel.cpp
 
 CMakeFiles/jammy_server.dir/src/Channel.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/Channel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Channel.cpp > CMakeFiles/jammy_server.dir/src/Channel.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Channel.cpp > CMakeFiles/jammy_server.dir/src/Channel.cpp.i
 
 CMakeFiles/jammy_server.dir/src/Channel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/Channel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Channel.cpp -o CMakeFiles/jammy_server.dir/src/Channel.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Channel.cpp -o CMakeFiles/jammy_server.dir/src/Channel.cpp.s
 
 CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o: ../src/ThreadPool.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o -c /code/jammy_webserver/src/ThreadPool.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o -c /code/jammy_webserver/src/ThreadPool.cpp
 
 CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/ThreadPool.cpp > CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/ThreadPool.cpp > CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.i
 
 CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/ThreadPool.cpp -o CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/ThreadPool.cpp -o CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.s
 
 CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.o: ../src/EpollLoop.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.o -c /code/jammy_webserver/src/EpollLoop.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.o -c /code/jammy_webserver/src/EpollLoop.cpp
 
 CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/EpollLoop.cpp > CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/EpollLoop.cpp > CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.i
 
 CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/EpollLoop.cpp -o CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/EpollLoop.cpp -o CMakeFiles/jammy_server.dir/src/EpollLoop.cpp.s
 
 CMakeFiles/jammy_server.dir/src/Epoll.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/Epoll.cpp.o: ../src/Epoll.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/jammy_server.dir/src/Epoll.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Epoll.cpp.o -c /code/jammy_webserver/src/Epoll.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Epoll.cpp.o -c /code/jammy_webserver/src/Epoll.cpp
 
 CMakeFiles/jammy_server.dir/src/Epoll.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/Epoll.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Epoll.cpp > CMakeFiles/jammy_server.dir/src/Epoll.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Epoll.cpp > CMakeFiles/jammy_server.dir/src/Epoll.cpp.i
 
 CMakeFiles/jammy_server.dir/src/Epoll.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/Epoll.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Epoll.cpp -o CMakeFiles/jammy_server.dir/src/Epoll.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Epoll.cpp -o CMakeFiles/jammy_server.dir/src/Epoll.cpp.s
 
 CMakeFiles/jammy_server.dir/src/Socket.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/Socket.cpp.o: ../src/Socket.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/jammy_server.dir/src/Socket.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Socket.cpp.o -c /code/jammy_webserver/src/Socket.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Socket.cpp.o -c /code/jammy_webserver/src/Socket.cpp
 
 CMakeFiles/jammy_server.dir/src/Socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/Socket.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Socket.cpp > CMakeFiles/jammy_server.dir/src/Socket.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Socket.cpp > CMakeFiles/jammy_server.dir/src/Socket.cpp.i
 
 CMakeFiles/jammy_server.dir/src/Socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/Socket.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Socket.cpp -o CMakeFiles/jammy_server.dir/src/Socket.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Socket.cpp -o CMakeFiles/jammy_server.dir/src/Socket.cpp.s
 
 CMakeFiles/jammy_server.dir/src/InetAddr.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/InetAddr.cpp.o: ../src/InetAddr.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/jammy_server.dir/src/InetAddr.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/InetAddr.cpp.o -c /code/jammy_webserver/src/InetAddr.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/InetAddr.cpp.o -c /code/jammy_webserver/src/InetAddr.cpp
 
 CMakeFiles/jammy_server.dir/src/InetAddr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/InetAddr.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/InetAddr.cpp > CMakeFiles/jammy_server.dir/src/InetAddr.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/InetAddr.cpp > CMakeFiles/jammy_server.dir/src/InetAddr.cpp.i
 
 CMakeFiles/jammy_server.dir/src/InetAddr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/InetAddr.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/InetAddr.cpp -o CMakeFiles/jammy_server.dir/src/InetAddr.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/InetAddr.cpp -o CMakeFiles/jammy_server.dir/src/InetAddr.cpp.s
 
 CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o: ../src/TimeStamp.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o -c /code/jammy_webserver/src/TimeStamp.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o -c /code/jammy_webserver/src/TimeStamp.cpp
 
 CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/TimeStamp.cpp > CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/TimeStamp.cpp > CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.i
 
 CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/TimeStamp.cpp -o CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/TimeStamp.cpp -o CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.s
 
 CMakeFiles/jammy_server.dir/src/Buffer.cpp.o: CMakeFiles/jammy_server.dir/flags.make
 CMakeFiles/jammy_server.dir/src/Buffer.cpp.o: ../src/Buffer.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/code/jammy_webserver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/jammy_server.dir/src/Buffer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Buffer.cpp.o -c /code/jammy_webserver/src/Buffer.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jammy_server.dir/src/Buffer.cpp.o -c /code/jammy_webserver/src/Buffer.cpp
 
 CMakeFiles/jammy_server.dir/src/Buffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jammy_server.dir/src/Buffer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Buffer.cpp > CMakeFiles/jammy_server.dir/src/Buffer.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /code/jammy_webserver/src/Buffer.cpp > CMakeFiles/jammy_server.dir/src/Buffer.cpp.i
 
 CMakeFiles/jammy_server.dir/src/Buffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jammy_server.dir/src/Buffer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Buffer.cpp -o CMakeFiles/jammy_server.dir/src/Buffer.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /code/jammy_webserver/src/Buffer.cpp -o CMakeFiles/jammy_server.dir/src/Buffer.cpp.s
 
 # Object files for target jammy_server
 jammy_server_OBJECTS = \
-"CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o" \
+"CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o" \
 "CMakeFiles/jammy_server.dir/src/EchoServer.cpp.o" \
 "CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o" \
 "CMakeFiles/jammy_server.dir/src/Acceptor.cpp.o" \
@@ -245,7 +245,7 @@ jammy_server_OBJECTS = \
 # External object files for target jammy_server
 jammy_server_EXTERNAL_OBJECTS =
 
-jammy_server: CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o
+jammy_server: CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o
 jammy_server: CMakeFiles/jammy_server.dir/src/EchoServer.cpp.o
 jammy_server: CMakeFiles/jammy_server.dir/src/TcpServer.cpp.o
 jammy_server: CMakeFiles/jammy_server.dir/src/Acceptor.cpp.o

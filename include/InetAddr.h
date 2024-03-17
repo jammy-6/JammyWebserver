@@ -2,19 +2,26 @@
 #define INET_ADDR_H
 #include "common.h"
 
-//封装的地质类
-class InetAddr{
+//封装的地址类
+class InetAddr {
 public:
-    InetAddr();//空的构造函数
-    InetAddr(const char*ip,uint16_t port);//构造函数
-    InetAddr(sockaddr_in addr_);//构造函数
+  //空的构造函数
+  InetAddr();
+  //构造函数
+  InetAddr(const char *ip, uint16_t port);
+  //构造函数
+  InetAddr(sockaddr_in addr_);
 
-    sockaddr *addr(); //返回sockaddr指针，用于accept或bind
-    const char *ip()const;//返回ip地址的点分十进制形式
-    u_int16_t port()const;//返回端口号
+  //返回sockaddr指针，用于accept或bind
+  sockaddr *addr();
+  //返回ip地址的点分十进制形式
+  const char *ip() const;
+  //返回端口号
+  u_int16_t port() const;
 
 private:
-    sockaddr_in addr_; //封装的地址
+  //封装的地址
+  sockaddr_in addr_;
 };
 
 #endif

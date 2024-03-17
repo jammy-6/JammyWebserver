@@ -463,59 +463,59 @@ src/TimeStamp.cpp.s:
 	$(MAKE) -f CMakeFiles/jammy_server.dir/build.make CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.s
 .PHONY : src/TimeStamp.cpp.s
 
-src/epoll_client.o: src/epoll_client.cpp.o
+src/jammy_client.o: src/jammy_client.cpp.o
 
-.PHONY : src/epoll_client.o
-
-# target to build an object file
-src/epoll_client.cpp.o:
-	$(MAKE) -f CMakeFiles/jammy_client.dir/build.make CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o
-.PHONY : src/epoll_client.cpp.o
-
-src/epoll_client.i: src/epoll_client.cpp.i
-
-.PHONY : src/epoll_client.i
-
-# target to preprocess a source file
-src/epoll_client.cpp.i:
-	$(MAKE) -f CMakeFiles/jammy_client.dir/build.make CMakeFiles/jammy_client.dir/src/epoll_client.cpp.i
-.PHONY : src/epoll_client.cpp.i
-
-src/epoll_client.s: src/epoll_client.cpp.s
-
-.PHONY : src/epoll_client.s
-
-# target to generate assembly for a file
-src/epoll_client.cpp.s:
-	$(MAKE) -f CMakeFiles/jammy_client.dir/build.make CMakeFiles/jammy_client.dir/src/epoll_client.cpp.s
-.PHONY : src/epoll_client.cpp.s
-
-src/epoll_server.o: src/epoll_server.cpp.o
-
-.PHONY : src/epoll_server.o
+.PHONY : src/jammy_client.o
 
 # target to build an object file
-src/epoll_server.cpp.o:
-	$(MAKE) -f CMakeFiles/jammy_server.dir/build.make CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o
-.PHONY : src/epoll_server.cpp.o
+src/jammy_client.cpp.o:
+	$(MAKE) -f CMakeFiles/jammy_client.dir/build.make CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o
+.PHONY : src/jammy_client.cpp.o
 
-src/epoll_server.i: src/epoll_server.cpp.i
+src/jammy_client.i: src/jammy_client.cpp.i
 
-.PHONY : src/epoll_server.i
+.PHONY : src/jammy_client.i
 
 # target to preprocess a source file
-src/epoll_server.cpp.i:
-	$(MAKE) -f CMakeFiles/jammy_server.dir/build.make CMakeFiles/jammy_server.dir/src/epoll_server.cpp.i
-.PHONY : src/epoll_server.cpp.i
+src/jammy_client.cpp.i:
+	$(MAKE) -f CMakeFiles/jammy_client.dir/build.make CMakeFiles/jammy_client.dir/src/jammy_client.cpp.i
+.PHONY : src/jammy_client.cpp.i
 
-src/epoll_server.s: src/epoll_server.cpp.s
+src/jammy_client.s: src/jammy_client.cpp.s
 
-.PHONY : src/epoll_server.s
+.PHONY : src/jammy_client.s
 
 # target to generate assembly for a file
-src/epoll_server.cpp.s:
-	$(MAKE) -f CMakeFiles/jammy_server.dir/build.make CMakeFiles/jammy_server.dir/src/epoll_server.cpp.s
-.PHONY : src/epoll_server.cpp.s
+src/jammy_client.cpp.s:
+	$(MAKE) -f CMakeFiles/jammy_client.dir/build.make CMakeFiles/jammy_client.dir/src/jammy_client.cpp.s
+.PHONY : src/jammy_client.cpp.s
+
+src/jammy_server.o: src/jammy_server.cpp.o
+
+.PHONY : src/jammy_server.o
+
+# target to build an object file
+src/jammy_server.cpp.o:
+	$(MAKE) -f CMakeFiles/jammy_server.dir/build.make CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o
+.PHONY : src/jammy_server.cpp.o
+
+src/jammy_server.i: src/jammy_server.cpp.i
+
+.PHONY : src/jammy_server.i
+
+# target to preprocess a source file
+src/jammy_server.cpp.i:
+	$(MAKE) -f CMakeFiles/jammy_server.dir/build.make CMakeFiles/jammy_server.dir/src/jammy_server.cpp.i
+.PHONY : src/jammy_server.cpp.i
+
+src/jammy_server.s: src/jammy_server.cpp.s
+
+.PHONY : src/jammy_server.s
+
+# target to generate assembly for a file
+src/jammy_server.cpp.s:
+	$(MAKE) -f CMakeFiles/jammy_server.dir/build.make CMakeFiles/jammy_server.dir/src/jammy_server.cpp.s
+.PHONY : src/jammy_server.cpp.s
 
 # Help Target
 help:
@@ -563,12 +563,12 @@ help:
 	@echo "... src/TimeStamp.o"
 	@echo "... src/TimeStamp.i"
 	@echo "... src/TimeStamp.s"
-	@echo "... src/epoll_client.o"
-	@echo "... src/epoll_client.i"
-	@echo "... src/epoll_client.s"
-	@echo "... src/epoll_server.o"
-	@echo "... src/epoll_server.i"
-	@echo "... src/epoll_server.s"
+	@echo "... src/jammy_client.o"
+	@echo "... src/jammy_client.i"
+	@echo "... src/jammy_client.s"
+	@echo "... src/jammy_server.o"
+	@echo "... src/jammy_server.i"
+	@echo "... src/jammy_server.s"
 .PHONY : help
 
 

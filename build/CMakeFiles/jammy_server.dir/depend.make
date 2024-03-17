@@ -105,18 +105,18 @@ CMakeFiles/jammy_server.dir/src/ThreadPool.cpp.o: ../src/ThreadPool.cpp
 CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o: ../include/TimeStamp.h
 CMakeFiles/jammy_server.dir/src/TimeStamp.cpp.o: ../src/TimeStamp.cpp
 
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/Acceptor.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/Buffer.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/Channel.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/Connection.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/EchoServer.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/Epoll.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/EpollLoop.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/InetAddr.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/Socket.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/TcpServer.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/ThreadPool.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/TimeStamp.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../include/common.h
-CMakeFiles/jammy_server.dir/src/epoll_server.cpp.o: ../src/epoll_server.cpp
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/Acceptor.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/Buffer.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/Channel.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/Connection.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/EchoServer.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/Epoll.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/EpollLoop.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/InetAddr.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/Socket.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/TcpServer.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/ThreadPool.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/TimeStamp.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../include/common.h
+CMakeFiles/jammy_server.dir/src/jammy_server.cpp.o: ../src/jammy_server.cpp
 

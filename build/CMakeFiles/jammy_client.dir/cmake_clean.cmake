@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/jammy_client.dir/src/Buffer.cpp.o"
-  "CMakeFiles/jammy_client.dir/src/epoll_client.cpp.o"
+  "CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o"
   "jammy_client"
   "jammy_client.pdb"
 )
