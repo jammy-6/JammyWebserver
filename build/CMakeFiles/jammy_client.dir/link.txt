@@ -1,1 +1,0 @@
-/usr/bin/clang++  -g   CMakeFiles/jammy_client.dir/src/jammy_client.cpp.o CMakeFiles/jammy_client.dir/src/Buffer.cpp.o  -o jammy_client 
