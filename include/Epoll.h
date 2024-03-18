@@ -24,6 +24,8 @@ public:
   ~Epoll();
   //将传入的Channel向内核时间表进行注册会修改
   void updateChannel(Channel *ch);
+  //删除监听的信道
+  void removeChannel(Channel *ch);
   // loop函数会调用epoll_wait监听内核中实际发生的事件，并封装成Channel返回
   std::vector<Channel *> loop(int timeout = -1);
 };

@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
   // setnonblocking(clisock);
   char buff[1024];
   char temp[128];
-  for (int i = 1; i <= 10000; i++) {
+  for (int i = 1; i <= 1000; i++) {
     bzero(temp, sizeof(temp));
     bzero(buff, sizeof(buff));
     sprintf(temp, "大猫%d号向您问号", i);
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   }
   std::string msg;
   int count = 0;
-  for (int i = 1; i <= 10000; i++) {
+  for (int i = 1; i <= 1000; i++) {
     while (inBuff.getMsg(msg)) {
 
       printf("[CLIENT] : Receive%d %s\n", ++count, msg.data());

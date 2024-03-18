@@ -27,9 +27,12 @@ public:
   void handleOnMessage(spConnection con, std::string &data);
   void handleOnMessageSendComplete(spConnection con);
   void handleOnEpollTimeOut(EpollLoop *loop);
+  void handleOnConnTimeOut(Socket *cliSocket);
+  void sendMessage(spConnection con, std::string &data);
+  // TcpServer关闭时的回调函数，停止EchoServer，关闭工作线程池
+  void stop();
+  //开启EchoServer
   void start();
-
-  void onMessage(spConnection con, std::string &data);
 };
 
 #endif

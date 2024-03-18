@@ -31,15 +31,15 @@ public:
 #include <unistd.h>
 ThreadPool::ThreadPool(int size, std::string type) : stop_(false) {
   type_ = type;
-  std::cout << "(" << type_ << ")"
-            << "ThreadPoll With " << size << " Threads" << std::endl;
+  // std::cout << "(" << type_ << ")"
+  //           << "ThreadPoll With " << size << " Threads" << std::endl;
 
   for (int i = 0; i < size; i++) {
     //创建线程并执行线程函数
     ths_.emplace_back([this]() {
-      std::cout << "(" << type_ << ")"
-                << "Thread Id : " << syscall(SYS_gettid) << " Created"
-                << std::endl;
+      // std::cout << "(" << type_ << ")"
+      //           << "Thread Id : " << syscall(SYS_gettid) << " Created"
+      //           << std::endl;
       while (!stop_) {
         std::function<void()> task;
         //尝试从任务队列中取出任务
@@ -56,12 +56,19 @@ ThreadPool::ThreadPool(int size, std::string type) : stop_(false) {
           task = std::move(tasks_.front());
           tasks_.pop_front();
         }
-        std::cout << "(" << type_ << ")"
-                  << "Thread Id : " << syscall(SYS_gettid) << " Excuted Task"
-                  << std::endl;
+        // std::cout << "(" << type_ << ")"
+        //           << "Thread Id : " << syscall(SYS_gettid) << " Excuted Task"
+        //           << std::endl;
         task();
       }
     });
+  }
+}
+void ThreadPool::stop() {
+  stop_ = true;
+  cv_.notify_all(); //唤醒所有阻塞线程
+  for (int i = 0; i < ths_.size(); i++) {
+    ths_[i].join(); //等待所有子线程退出
   }
 }
 

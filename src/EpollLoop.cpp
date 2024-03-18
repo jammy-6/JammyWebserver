@@ -1,4 +1,6 @@
 #include "EpollLoop.h"
+#include "Socket.h"
+#include <vector>
 
 EpollLoop::EpollLoop(bool isMainLoop, time_t clock, time_t timeout)
     : isMainLoop_(isMainLoop), clock_(clock), timeout_(timeout),
@@ -11,6 +13,7 @@ EpollLoop::EpollLoop(bool isMainLoop, time_t clock, time_t timeout)
                       this)) {
   //把eventfd加入事件循环机制
   connOutBuffChannel_->enableReading();
+  connOutBuffChannel_->enableET();
   connOutBuffChannel_->setReadcallback(
       std::bind(&EpollLoop::handleConnOutbufflMsg, this));
   ep_->updateChannel(connOutBuffChannel_.get());
@@ -27,12 +30,12 @@ EpollLoop::EpollLoop(bool isMainLoop, time_t clock, time_t timeout)
         std::bind(&EpollLoop::handleTimerChannelMsg, this));
     timerChannel_->enableReading();
     timerChannel_->enableET();
-    ep_->updateChannel(timerChannel_.get());
   }
 }
 EpollLoop::~EpollLoop() {}
 void EpollLoop::run() {
-  while (1) {
+  status_ = true;
+  while (status_) {
     std::vector<Channel *> channels =
         ep_->loop(10 * 1000); //设置epoll_wait超时时长为10秒
     //遍历发生事件的信道
@@ -43,15 +46,11 @@ void EpollLoop::run() {
     for (Channel *ch : channels) {
       //处理事件
       ch->handleEvent();
-      //当用户退出时，用户通道会失效，对其进行删除
-      // if(!ch->isValid()){
-      //     delete ch;
-      //     ch = nullptr;
-      // }
     }
   }
 }
 
+void EpollLoop::stop() { status_ = false; }
 Epoll *EpollLoop::getEp() { return ep_.get(); }
 
 void EpollLoop::setEpollTimeOutCallback(std::function<void()> func) {
@@ -84,20 +83,22 @@ void EpollLoop::addTask(std::function<void()> func) {
 void EpollLoop::handleTimerChannelMsg() {
   uint64_t buf;
   int num = read(timerChannel_->fd(), &buf, sizeof(buf));
-  printf("当前loop链接的客户：");
-  {
-    std::lock_guard<std::mutex> guard(timerMut_);
-    for (auto &pair : cons_) {
-      if (!(pair.first))
-        break;
-      printf("%d ", pair.first->fd());
-      if (pair.second->isTimeOut(TimeStamp::now(), timeout_)) { //如果超时
-        cons_.erase(pair.first);
-        connTimeoutCallBack_(pair.first);
-      }
+  std::vector<Socket *> deleConSocks;
+  for (auto &pair : cons_) {
+    if (!(pair.first))
+      break;
+    if (pair.second->isTimeOut(TimeStamp::now(), timeout_)) { //如果超时
+      deleConSocks.push_back(pair.first);
     }
   }
-  printf("\n");
+
+  {
+    std::lock_guard<std::mutex> guard(timerMut_);
+    for (Socket *sock : deleConSocks) {
+      cons_.erase(sock);
+      connTimeoutCallBack_(sock);
+    }
+  }
 }
 
 void EpollLoop::appendConn(Socket *cliSocket, spConnection conn) {

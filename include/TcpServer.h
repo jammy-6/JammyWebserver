@@ -7,6 +7,7 @@
 #include "ThreadPool.h"
 #include <map>
 #include <memory>
+#include <signal.h>
 #include <string>
 class TcpServer {
 private:
@@ -32,13 +33,16 @@ private:
   std::function<void(Socket *)> onConnErrorCallback_;
   //连接关闭时的回调函数，由上层应用如EchoServer进行注册
   std::function<void(Socket *)> onConnCloseCallback_;
-
   //连接有消息时的回调函数，由上层应用如EchoServer进行注册
   std::function<void(spConnection, std::string &)> onMessageCallback_;
   //连接数据发送完毕时的回调函数，由上层应用如EchoServer进行注册
   std::function<void(spConnection)> onMsgSendCompleteCallback_;
-  //连接超时的回调函数，由上层应用如EchoServer进行注册
+  // Epoll::loop超时的回调函数，由上层应用如EchoServer进行注册
   std::function<void(EpollLoop *)> onEpollTimeOutCallback_;
+  //连接超时的回调函数，由上层应用如EchoServer进行注册
+  std::function<void(Socket *)> onConnTimeOutCallback_;
+  // TcpServer停用时调用的回调函数
+  std::function<void()> onServerStopCallback_;
 
 public:
   TcpServer(std::string ip, uint16_t port, int threadnum = 3);
@@ -58,9 +62,12 @@ public:
 
   //启动，调用EpollLoop::run开启事件循环
   void start();
+  //关闭服务器，删除所有连接并停止主事件循环和从事件循环
+  void stop();
   // 往EpollLoop::connTimeoutCallBack_注册的回调函数，用于连接超时
-  void removeConnect(Socket *cliSocket);
-
+  void onConnTimeout(Socket *cliSocket);
+  //处理2,15信号，让程序合理退出
+  void sig_handler(int sig);
   //设置回调函数相关
   void setOnNewConnectionCallback(std::function<void(Socket *)> fun);
   void setOnConnErrorCallback(std::function<void(Socket *)> fun);
@@ -69,6 +76,8 @@ public:
   setOnMessageCallback(std::function<void(spConnection, std::string &)> fun);
   void setOnMsgSendCompleteCallback(std::function<void(spConnection)> fun);
   void setOnEpollTimeOutCallback(std::function<void(EpollLoop *)> fun);
+  void setOnConnTimeOutCallback(std::function<void(Socket *)> fun);
+  void setOnServerStopCallback(std::function<void()> fun);
 };
 
 #endif

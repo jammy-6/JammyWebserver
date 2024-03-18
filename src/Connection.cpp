@@ -32,7 +32,11 @@ Connection::Connection(EpollLoop *eventsLoop, Socket *cliSocket)
   // 当输出缓存为空时，自动注销写事件
   // outBuff_.setEmptyBuffCallback(std::bind(&Channel::disableWriting,connectionChannel_));
 }
-Connection::~Connection() { std::cout << "Connection类注销" << std::endl; }
+Connection::~Connection() {
+  // std::cout << "Connection类注销" << std::endl;
+  connectionChannel_->disableAll();
+  eventsLoop_->getEp()->removeChannel(connectionChannel_.get());
+}
 //有数据到来
 void Connection::onMessageIn() {
   timeStamp_ = TimeStamp::now();

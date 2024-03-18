@@ -5,6 +5,7 @@
 #include "Epoll.h"
 #include "InetAddr.h"
 #include "Socket.h"
+#include <atomic>
 #include <deque>
 #include <functional>
 #include <map>
@@ -42,6 +43,8 @@ private:
 
   //是否为主事件循环，即主Reactor
   bool isMainLoop_;
+  //当前事件循环的开启状态
+  std::atomic_bool status_;
   //定时器到期时间，到期时检查所有连接的connection是否超时
   time_t clock_;
   //连接超时时长
@@ -59,6 +62,8 @@ public:
   ~EpollLoop();
   //开始事件循环,会调用Epoll::loop函数
   void run();
+  //关闭事件循环,设置staus_为false
+  void stop();
   //获取Epoll指针
   Epoll *getEp();
   //往任务队列中加入任务

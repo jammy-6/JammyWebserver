@@ -38,7 +38,10 @@ Acceptor::Acceptor(std::string &ip, u_int16_t port, EpollLoop *eventsLoop)
                          // ep.updateChannel(listenChannel);
 }
 
-Acceptor::~Acceptor() {  }
+Acceptor::~Acceptor() {
+  acceptChannel_->disableAll();
+  eventsLoop_->getEp()->removeChannel(acceptChannel_.get());
+}
 
 void Acceptor::setNewConnCallBack(std::function<void(Socket *)> func) {
   newConnCallBack_ = func;

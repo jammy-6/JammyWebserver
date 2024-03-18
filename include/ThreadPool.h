@@ -33,7 +33,8 @@ public:
   //构造函数
   ThreadPool(int size, std::string type);
   ~ThreadPool();
-
+  //停止线程池
+  void stop();
   //往任务队列中添加任务
   void addTask(std::function<void()> &&task);
   //线程从任务队列中取出任务执行

@@ -1,4 +1,5 @@
 #include "Epoll.h"
+#include <sys/epoll.h>
 
 /*
 class Epoll{
@@ -30,6 +31,11 @@ void Epoll::updateChannel(Channel *ch) {
     epoll_ctl(epollfd_, EPOLL_CTL_ADD, ch->fd(), &ev);
     ch->setInEpoll(true);
   }
+}
+
+void Epoll::removeChannel(Channel *ch) {
+  epoll_ctl(epollfd_, EPOLL_CTL_DEL, ch->fd(), nullptr);
+  ch->setInEpoll(false);
 }
 // std::vector<epoll_event*>  Epoll::loop(int timeout){
 //     std::vector<epoll_event> curevs;

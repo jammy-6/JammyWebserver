@@ -19,7 +19,7 @@ TcpServer::TcpServer(std::string ip, uint16_t port, int threadnum)
     subLoops_[i]->setEpollTimeOutCallback(
         std::bind(&TcpServer::onEpollTimeOut, this, mainLoops_.get()));
     subLoops_[i]->setConnTimeoutCallBack(
-        std::bind(&TcpServer::removeConnect, this, std::placeholders::_1));
+        std::bind(&TcpServer::onConnTimeout, this, std::placeholders::_1));
     thp_->addTask(std::bind(&EpollLoop::run, subLoops_[i].get()));
   }
 }
@@ -33,6 +33,22 @@ TcpServer::~TcpServer() {
 
 void TcpServer::start() { mainLoops_->run(); }
 
+void TcpServer::stop() {
+  if (onServerStopCallback_)
+    onServerStopCallback_();
+  //销毁资源
+  {
+    std::lock_guard<std::mutex> guard(consMut_);
+    for (auto &pair : cons_) {
+      cons_.erase(pair.first);
+    }
+  }
+  //关闭主从事件循环
+  mainLoops_->stop();
+  for (auto &loop : subLoops_) {
+    loop->stop();
+  }
+}
 void TcpServer::newConnection(Socket *cliSocket) {
 
   //在从事件循环中分配客户端连接
@@ -60,18 +76,24 @@ void TcpServer::newConnection(Socket *cliSocket) {
 }
 
 void TcpServer::connError(Socket *cliSocket) {
+
   if (onConnErrorCallback_) {
     onConnErrorCallback_(cliSocket);
   }
-
-  cons_.erase(cliSocket);
+  {
+    std::lock_guard<std::mutex> guard(consMut_);
+    cons_.erase(cliSocket);
+  }
 }
+
 void TcpServer::connClose(Socket *cliSocket) {
   if (onConnCloseCallback_) {
     onConnCloseCallback_(cliSocket);
   }
-
-  cons_.erase(cliSocket);
+  {
+    std::lock_guard<std::mutex> guard(consMut_);
+    cons_.erase(cliSocket);
+  }
 }
 
 void TcpServer::onMessage(spConnection con, std::string &data) {
@@ -90,35 +112,51 @@ void TcpServer::onEpollTimeOut(EpollLoop *loop) {
   if (onEpollTimeOutCallback_) {
     onEpollTimeOutCallback_(loop);
   }
-  printf("[SERVER] : Epoll Time Out\n");
+  // printf("[SERVER] : Epoll Time Out\n");
+}
+
+void TcpServer::onConnTimeout(Socket *cliSocket) {
+  //调用回调函数
+  if (onConnTimeOutCallback_)
+    onConnTimeOutCallback_(cliSocket);
+  //删除cons_中的无效连接
+  {
+    std::lock_guard<std::mutex> guard(consMut_);
+    cons_.erase(cliSocket);
+  }
 }
 
 //设置回调函数相关
-void TcpServer::setOnNewConnectionCallback(std::function<void(Socket *)> fun) {
-  onNewConnectionCallback_ = fun;
+void TcpServer::setOnNewConnectionCallback(
+    std::function<void(Socket *)> callback) {
+  onNewConnectionCallback_ = callback;
 }
-void TcpServer::setOnConnErrorCallback(std::function<void(Socket *)> fun) {
-  onConnErrorCallback_ = fun;
+void TcpServer::setOnConnErrorCallback(std::function<void(Socket *)> callback) {
+  onConnErrorCallback_ = callback;
 }
-void TcpServer::setOnConnCloseCallback(std::function<void(Socket *)> fun) {
-  onConnCloseCallback_ = fun;
+void TcpServer::setOnConnCloseCallback(std::function<void(Socket *)> callback) {
+  onConnCloseCallback_ = callback;
 }
 void TcpServer::setOnMessageCallback(
-    std::function<void(spConnection con, std::string &data)> fun) {
-  onMessageCallback_ = fun;
+    std::function<void(spConnection con, std::string &data)> callback) {
+  onMessageCallback_ = callback;
 }
 void TcpServer::setOnMsgSendCompleteCallback(
-    std::function<void(spConnection)> fun) {
-  onMsgSendCompleteCallback_ = fun;
+    std::function<void(spConnection)> callback) {
+
+  onMsgSendCompleteCallback_ = callback;
 }
 void TcpServer::setOnEpollTimeOutCallback(
-    std::function<void(EpollLoop *)> fun) {
-  onEpollTimeOutCallback_ = fun;
+    std::function<void(EpollLoop *)> callback) {
+
+  onEpollTimeOutCallback_ = callback;
 }
 
-void TcpServer::removeConnect(Socket *cliSocket) {
-  {
-    std::lock_guard<std::mutex> guard(consMut_);
-    cons_.erase(cliSocket); //将连接添加进TcpServer的map
-  }
+void TcpServer::setOnConnTimeOutCallback(
+    std::function<void(Socket *)> callback) {
+  onConnTimeOutCallback_ = callback;
+}
+
+void TcpServer::setOnServerStopCallback(std::function<void()> fun) {
+  onServerStopCallback_ = fun;
 }
