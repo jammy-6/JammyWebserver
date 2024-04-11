@@ -20,10 +20,10 @@ class Channel;
 class Epoll;
 // Connection类的共享指针
 using spConnection = std::shared_ptr<Connection>;
-class EpollLoop {
+class EventLoop {
 
 private:
-  // EpollLoop类封装的Epoll，是1对1关系
+  // EventLoop类封装的Epoll，是1对1关系
   std::unique_ptr<Epoll> ep_;
   // EPOLL类调用loop函数时超时的回调函数
   std::function<void()> epollTimeOutCallback_;
@@ -38,7 +38,7 @@ private:
 
   //用于保护多线程下cons_写入cons_的问题
   std::mutex timerMut_;
-  //当前EpollLoop类接受连接的客户
+  //当前EventLoop类接受连接的客户
   std::map<Socket *, spConnection> cons_;
 
   //是否为主事件循环，即主Reactor
@@ -57,9 +57,9 @@ private:
 
 public:
   //构造函数参数分别为 是否主循环，定时器到期时间，连接超时时间
-  EpollLoop(bool isMainLoop, time_t clock, time_t timeout);
+  EventLoop(bool isMainLoop, time_t clock, time_t timeout);
   //析构函数
-  ~EpollLoop();
+  ~EventLoop();
   //开始事件循环,会调用Epoll::loop函数
   void run();
   //关闭事件循环,设置staus_为false

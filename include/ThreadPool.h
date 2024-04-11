@@ -25,7 +25,7 @@ private:
   //线程池退出标志
   std::atomic_bool stop_;
   //线程池类型
-  // IO类型：运行从Reactor模型调用的EpollLoop::run函数
+  // IO类型：运行从Reactor模型调用的EventLoop::run函数
   // WORK类型，如由EchoServer对数据的计算操作
   std::string type_;
 

@@ -1,20 +1,20 @@
 #ifndef CHANNEL_H
 #define CHANNEL_H
 
-#include "EpollLoop.h"
+#include "EventLoop.h"
 #include "InetAddr.h"
 #include "Socket.h"
 #include "common.h"
 #include <functional>
 #include <memory>
-class EpollLoop;
+class EventLoop;
 
 class Channel {
 private:
   // int fd_=-1;//channel类对应的fd，fd与channel是一对一关系
   Socket *sock_;
   // channel类对应的Epoll指针，ep_与channel是一对多的关系
-  EpollLoop *epollLoop_;
+  EventLoop *EventLoop_;
   //判断当前channel是否向内核注册事件
   bool isInEpoll_ = false;
   //当前channel被epoll类监听的事件
@@ -32,7 +32,7 @@ private:
 
 public:
   //信道构造函数
-  Channel(Socket *sock, EpollLoop *epollLoop);
+  Channel(Socket *sock, EventLoop *EventLoop);
   //信道析构函数
   ~Channel();
 

@@ -19,39 +19,39 @@ public:
     uint32_t revents();
 };*/
 
-Channel::Channel(Socket *sock, EpollLoop *epollLoop)
-    : sock_(sock), epollLoop_(epollLoop) {}
+Channel::Channel(Socket *sock, EventLoop *EventLoop)
+    : sock_(sock), EventLoop_(EventLoop) {}
 Channel::~Channel() {}
 void Channel::setInEpoll(bool on) { isInEpoll_ = on; }
 void Channel::enableReading() {
   events_ |= EPOLLIN;
-  if (epollLoop_->getEp() != nullptr)
-    epollLoop_->getEp()->updateChannel(this);
+  if (EventLoop_->getEp() != nullptr)
+    EventLoop_->getEp()->updateChannel(this);
 }
 
 void Channel::enableET() {
   events_ |= EPOLLET;
-  if (epollLoop_->getEp() != nullptr)
-    epollLoop_->getEp()->updateChannel(this);
+  if (EventLoop_->getEp() != nullptr)
+    EventLoop_->getEp()->updateChannel(this);
 }
 //设置监听写事件
 void Channel::enableWriting() {
   events_ |= EPOLLOUT;
-  if (epollLoop_->getEp() != nullptr)
-    epollLoop_->getEp()->updateChannel(this);
+  if (EventLoop_->getEp() != nullptr)
+    EventLoop_->getEp()->updateChannel(this);
 }
 //取消监听写事件
 void Channel::disableWriting() {
   events_ &= ~EPOLLOUT;
-  if (epollLoop_->getEp() != nullptr)
-    epollLoop_->getEp()->updateChannel(this);
+  if (EventLoop_->getEp() != nullptr)
+    EventLoop_->getEp()->updateChannel(this);
 }
 
 //屏蔽当前信道
 void Channel::disableAll() {
   events_ &= 0;
-  if (epollLoop_->getEp() != nullptr)
-    epollLoop_->getEp()->updateChannel(this);
+  if (EventLoop_->getEp() != nullptr)
+    EventLoop_->getEp()->updateChannel(this);
 }
 bool Channel::isInEpoll() const { return isInEpoll_; }
 void Channel::setRevents(uint32_t rev) { revents_ = rev; }
@@ -90,13 +90,13 @@ void Channel::handleEvent() {
 //用于接受客户端消息请求
 // void Channel::onMessage(){
 //     if(revents_&EPOLLRDHUP){//客户端断开连接事件
-//         epollLoop_->getEp()->removeChannel(this);
+//         EventLoop_->getEp()->removeChannel(this);
 //         return;
 //     }else if(revents_&EPOLLIN){//有数据到来
 //         while(1){
 //             int num = recv(fd_,buff_,sizeof(buff_),0);
 //             if(num==0){//对方关闭连接
-//                 epollLoop_->getEp()->removeChannel(this);
+//                 EventLoop_->getEp()->removeChannel(this);
 //                 return;
 //             }else if(num<0 &&
 //             (errno==EAGAIN||errno==EWOULDBLOCK)){//内核缓冲区读取完毕
@@ -121,5 +121,5 @@ void Channel::handleEvent() {
 //     Socket *cliSock = new Socket(clifd,cliaddr);
 //     printf("[SERVER] : Client Connect Success, Ip = %s, Port =
 //     %hu\n",cliaddr.ip(),cliaddr.port()); Connection *cliConnection = new
-//     Connection(epollLoop_,cliSock);
+//     Connection(EventLoop_,cliSock);
 // }

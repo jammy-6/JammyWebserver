@@ -1,7 +1,7 @@
 #ifndef ACCEPTOR_H
 #define ACCEPTOR_H
 #include "Channel.h"
-#include "EpollLoop.h"
+#include "EventLoop.h"
 #include "Socket.h"
 #include <functional>
 #include <memory>
@@ -9,8 +9,8 @@
 class Acceptor {
 
 private:
-  //从外面传入的的EpollLoop
-  EpollLoop *eventsLoop_;
+  //从外面传入的的EventLoop
+  EventLoop *eventsLoop_;
 
   //服务端socket地址
   std::unique_ptr<Socket> servSocket_;
@@ -22,7 +22,7 @@ private:
 
 public:
   //构造函数
-  Acceptor(std::string &ip, u_int16_t port, EpollLoop *eventsLoop);
+  Acceptor(std::string &ip, u_int16_t port, EventLoop *eventsLoop);
   //析构函数
   ~Acceptor();
 

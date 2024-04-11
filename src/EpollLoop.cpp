@@ -1,8 +1,8 @@
-#include "EpollLoop.h"
+#include "EventLoop.h"
 #include "Socket.h"
 #include <vector>
 
-EpollLoop::EpollLoop(bool isMainLoop, time_t clock, time_t timeout)
+EventLoop::EventLoop(bool isMainLoop, time_t clock, time_t timeout)
     : isMainLoop_(isMainLoop), clock_(clock), timeout_(timeout),
       ep_(new Epoll()), connOutBuffChannel_(new Channel(
                             new Socket(eventfd(0, 0), InetAddr()), this)),
@@ -15,7 +15,7 @@ EpollLoop::EpollLoop(bool isMainLoop, time_t clock, time_t timeout)
   connOutBuffChannel_->enableReading();
   connOutBuffChannel_->enableET();
   connOutBuffChannel_->setReadcallback(
-      std::bind(&EpollLoop::handleConnOutbufflMsg, this));
+      std::bind(&EventLoop::handleConnOutbufflMsg, this));
   ep_->updateChannel(connOutBuffChannel_.get());
 
   if (!isMainLoop_) {
@@ -27,13 +27,13 @@ EpollLoop::EpollLoop(bool isMainLoop, time_t clock, time_t timeout)
     tm.it_interval.tv_nsec = 0;
     timerfd_settime(timerChannel_->fd(), 0, &tm, 0);
     timerChannel_->setReadcallback(
-        std::bind(&EpollLoop::handleTimerChannelMsg, this));
+        std::bind(&EventLoop::handleTimerChannelMsg, this));
     timerChannel_->enableReading();
     timerChannel_->enableET();
   }
 }
-EpollLoop::~EpollLoop() {}
-void EpollLoop::run() {
+EventLoop::~EventLoop() {}
+void EventLoop::run() {
   status_ = true;
   while (status_) {
     std::vector<Channel *> channels =
@@ -50,15 +50,15 @@ void EpollLoop::run() {
   }
 }
 
-void EpollLoop::stop() { status_ = false; }
-Epoll *EpollLoop::getEp() { return ep_.get(); }
+void EventLoop::stop() { status_ = false; }
+Epoll *EventLoop::getEp() { return ep_.get(); }
 
-void EpollLoop::setEpollTimeOutCallback(std::function<void()> func) {
+void EventLoop::setEpollTimeOutCallback(std::function<void()> func) {
   epollTimeOutCallback_ = func;
 }
 
 //处理输出缓冲区任务
-void EpollLoop::handleConnOutbufflMsg() {
+void EventLoop::handleConnOutbufflMsg() {
   std::lock_guard<std::mutex> guard(mut_);
 
   std::function<void()> task;
@@ -70,7 +70,7 @@ void EpollLoop::handleConnOutbufflMsg() {
 }
 
 //往任务队列中加入任务
-void EpollLoop::addTask(std::function<void()> func) {
+void EventLoop::addTask(std::function<void()> func) {
   {
     std::lock_guard<std::mutex> guard(mut_);
     taskque_.push_back(std::move(func));
@@ -80,7 +80,7 @@ void EpollLoop::addTask(std::function<void()> func) {
   write(connOutBuffChannel_->fd(), &ev, sizeof(ev));
 }
 
-void EpollLoop::handleTimerChannelMsg() {
+void EventLoop::handleTimerChannelMsg() {
   uint64_t buf;
   int num = read(timerChannel_->fd(), &buf, sizeof(buf));
   std::vector<Socket *> deleConSocks;
@@ -101,19 +101,19 @@ void EpollLoop::handleTimerChannelMsg() {
   }
 }
 
-void EpollLoop::appendConn(Socket *cliSocket, spConnection conn) {
+void EventLoop::appendConn(Socket *cliSocket, spConnection conn) {
   {
     std::lock_guard<std::mutex> guard(timerMut_);
     cons_[cliSocket] = conn;
   }
 }
-void EpollLoop::removeConn(Socket *cliSocket) {
+void EventLoop::removeConn(Socket *cliSocket) {
   {
     std::lock_guard<std::mutex> guard(timerMut_);
     cons_.erase(cliSocket);
   }
 }
 
-void EpollLoop::setConnTimeoutCallBack(std::function<void(Socket *)> func) {
+void EventLoop::setConnTimeoutCallBack(std::function<void(Socket *)> func) {
   connTimeoutCallBack_ = func;
 }

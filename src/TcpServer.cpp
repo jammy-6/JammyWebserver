@@ -1,10 +1,10 @@
 #include "TcpServer.h"
 
 //注意！！！！ eventLoops_必须在此处初始化
-//若在下面调用 eventLoops_ = EpollLoop()
+//若在下面调用 eventLoops_ = EventLoop()
 //会导致epollfd被关闭，因为这里调用的是拷贝构造函数，然后会析构临时对象，造成问题
 TcpServer::TcpServer(std::string ip, uint16_t port, int threadnum)
-    : mainLoops_(new EpollLoop(true, 3, 5)), threadnum_(threadnum),
+    : mainLoops_(new EventLoop(true, 3, 5)), threadnum_(threadnum),
       thp_(new ThreadPool(threadnum, "IO")),
       acceptor_(new Acceptor(ip, port, mainLoops_.get())) {
 
@@ -15,12 +15,12 @@ TcpServer::TcpServer(std::string ip, uint16_t port, int threadnum)
 
   //往线程池中添加任务
   for (int i = 0; i < threadnum; i++) {
-    subLoops_.emplace_back(new EpollLoop(false, 5, 5));
+    subLoops_.emplace_back(new EventLoop(false, 5, 5));
     subLoops_[i]->setEpollTimeOutCallback(
         std::bind(&TcpServer::onEpollTimeOut, this, mainLoops_.get()));
     subLoops_[i]->setConnTimeoutCallBack(
         std::bind(&TcpServer::onConnTimeout, this, std::placeholders::_1));
-    thp_->addTask(std::bind(&EpollLoop::run, subLoops_[i].get()));
+    thp_->addTask(std::bind(&EventLoop::run, subLoops_[i].get()));
   }
 }
 TcpServer::~TcpServer() {
@@ -70,7 +70,7 @@ void TcpServer::newConnection(Socket *cliSocket) {
   }
 
   subLoops_[cliSocket->fd() % threadnum_]->appendConn(
-      cliSocket, cliConnection); //将连接添加进EpollLoop中的map
+      cliSocket, cliConnection); //将连接添加进EventLoop中的map
   if (onNewConnectionCallback_)
     onNewConnectionCallback_(cliSocket); //调用创建连接的回调函数
 }
@@ -108,7 +108,7 @@ void TcpServer::onMessageSendComplete(spConnection con) {
     onMsgSendCompleteCallback_(con);
   }
 }
-void TcpServer::onEpollTimeOut(EpollLoop *loop) {
+void TcpServer::onEpollTimeOut(EventLoop *loop) {
   if (onEpollTimeOutCallback_) {
     onEpollTimeOutCallback_(loop);
   }
@@ -147,7 +147,7 @@ void TcpServer::setOnMsgSendCompleteCallback(
   onMsgSendCompleteCallback_ = callback;
 }
 void TcpServer::setOnEpollTimeOutCallback(
-    std::function<void(EpollLoop *)> callback) {
+    std::function<void(EventLoop *)> callback) {
 
   onEpollTimeOutCallback_ = callback;
 }

@@ -1,7 +1,7 @@
 #ifndef ECHOSERVER_h
 #define ECHOSERVER_h
 
-#include "EpollLoop.h"
+#include "EventLoop.h"
 #include "TcpServer.h"
 #include "ThreadPool.h"
 #include "common.h"
@@ -26,7 +26,7 @@ public:
   void handleConnClose(Socket *cliSocket);
   void handleOnMessage(spConnection con, std::string &data);
   void handleOnMessageSendComplete(spConnection con);
-  void handleOnEpollTimeOut(EpollLoop *loop);
+  void handleOnEpollTimeOut(EventLoop *loop);
   void handleOnConnTimeOut(Socket *cliSocket);
   void sendMessage(spConnection con, std::string &data);
   // TcpServer关闭时的回调函数，停止EchoServer，关闭工作线程池

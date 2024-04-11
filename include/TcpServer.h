@@ -3,7 +3,7 @@
 
 #include "Acceptor.h"
 #include "Connection.h"
-#include "EpollLoop.h"
+#include "EventLoop.h"
 #include "ThreadPool.h"
 #include <map>
 #include <memory>
@@ -12,7 +12,7 @@
 class TcpServer {
 private:
   //主事件循环，用于接受连接
-  std::unique_ptr<EpollLoop> mainLoops_;
+  std::unique_ptr<EventLoop> mainLoops_;
   //接受客户端请求
   std::unique_ptr<Acceptor> acceptor_;
   //保护cons_，主事件循环写入连接，从事件循环回调删除cons_操作
@@ -25,7 +25,7 @@ private:
   //线程池，用与运行从事件循环
   std::unique_ptr<ThreadPool> thp_;
   //从事件循环
-  std::vector<std::unique_ptr<EpollLoop>> subLoops_;
+  std::vector<std::unique_ptr<EventLoop>> subLoops_;
 
   //连接创建时的回调函数，由上层应用如EchoServer进行注册
   std::function<void(Socket *)> onNewConnectionCallback_;
@@ -38,7 +38,7 @@ private:
   //连接数据发送完毕时的回调函数，由上层应用如EchoServer进行注册
   std::function<void(spConnection)> onMsgSendCompleteCallback_;
   // Epoll::loop超时的回调函数，由上层应用如EchoServer进行注册
-  std::function<void(EpollLoop *)> onEpollTimeOutCallback_;
+  std::function<void(EventLoop *)> onEpollTimeOutCallback_;
   //连接超时的回调函数，由上层应用如EchoServer进行注册
   std::function<void(Socket *)> onConnTimeOutCallback_;
   // TcpServer停用时调用的回调函数
@@ -57,14 +57,14 @@ public:
   void onMessage(spConnection con, std::string &data);
   // Connection发送数据完毕时调用的回调函数
   void onMessageSendComplete(spConnection);
-  // EpollLoop类超时调用的回调函数
-  void onEpollTimeOut(EpollLoop *loop);
+  // EventLoop类超时调用的回调函数
+  void onEpollTimeOut(EventLoop *loop);
 
-  //启动，调用EpollLoop::run开启事件循环
+  //启动，调用EventLoop::run开启事件循环
   void start();
   //关闭服务器，删除所有连接并停止主事件循环和从事件循环
   void stop();
-  // 往EpollLoop::connTimeoutCallBack_注册的回调函数，用于连接超时
+  // 往EventLoop::connTimeoutCallBack_注册的回调函数，用于连接超时
   void onConnTimeout(Socket *cliSocket);
   //处理2,15信号，让程序合理退出
   void sig_handler(int sig);
@@ -75,7 +75,7 @@ public:
   void
   setOnMessageCallback(std::function<void(spConnection, std::string &)> fun);
   void setOnMsgSendCompleteCallback(std::function<void(spConnection)> fun);
-  void setOnEpollTimeOutCallback(std::function<void(EpollLoop *)> fun);
+  void setOnEpollTimeOutCallback(std::function<void(EventLoop *)> fun);
   void setOnConnTimeOutCallback(std::function<void(Socket *)> fun);
   void setOnServerStopCallback(std::function<void()> fun);
 };

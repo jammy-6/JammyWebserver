@@ -48,7 +48,7 @@ void EchoServer::handleOnMessageSendComplete(spConnection con) {
          con->getCliSocket()->getAddr()->ip(),
          con->getCliSocket()->getAddr()->port(), syscall(SYS_gettid));
 }
-void EchoServer::handleOnEpollTimeOut(EpollLoop *loop) {}
+void EchoServer::handleOnEpollTimeOut(EventLoop *loop) {}
 void EchoServer::handleOnConnTimeOut(Socket *cliSocket) {
   printf(
       "[SERVER] : Client Connect Timeout %s:%d. Disconnect, ThreadId = %ld \n",

@@ -6,17 +6,17 @@ class Connection{
 
 private:
 
-    EpollLoop *eventsLoop_; //从外面传入的的EpollLoop
+    EventLoop *eventsLoop_; //从外面传入的的EventLoop
     Channel *connectionChannel_;//与客户进行通信的channel
     Socket *cliSocket_; //服务端socket地址
 
 public:
-    Connection(EpollLoop *eventsLoop,Socket *cliSocket);
+    Connection(EventLoop *eventsLoop,Socket *cliSocket);
     ~Connection();
 
 };*/
 
-Connection::Connection(EpollLoop *eventsLoop, Socket *cliSocket)
+Connection::Connection(EventLoop *eventsLoop, Socket *cliSocket)
     : eventsLoop_(eventsLoop), cliSocket_(cliSocket),
       connectionChannel_(new Channel(cliSocket, eventsLoop_)) {
   timeStamp_ = TimeStamp::now(); //更新TimeStamp
@@ -74,7 +74,7 @@ void Connection::writeOutBuff(std::string &data) {
 
   outBuff_.append(buff_, len + 4);
   // if((connectionChannel_->events()&EPOLLOUT)==false)//若epoll未监听写事件
-  connectionChannel_->enableWriting(); //让epollloop监听写事件
+  connectionChannel_->enableWriting(); //让EventLoop监听写事件
 }
 
 // Channel类监听到写事件，回调Connection发送数据
@@ -126,7 +126,7 @@ void Connection::removeChannel() {
   connectionChannel_->disableAll();
 }
 
-EpollLoop *Connection::getEventLoop() { return eventsLoop_; }
+EventLoop *Connection::getEventLoop() { return eventsLoop_; }
 //
 bool Connection::isTimeOut(TimeStamp t, time_t timeout) {
   return t.toint() - timeStamp_.toint() >= timeout;

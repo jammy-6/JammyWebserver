@@ -5,18 +5,18 @@ class Acceptor{
 
 private:
 
-    EpollLoop *eventsLoop_; //从外面传入的的EpollLoop
+    EventLoop *eventsLoop_; //从外面传入的的EventLoop
     Channel *acceptChannel_;//用于接受客户连接请求的channel
     Socket *servSocket_; //服务端socket地址
 
 public:
-    Acceptor( std::string &ip,u_int16_t port,EpollLoop *eventsLoop_);
+    Acceptor( std::string &ip,u_int16_t port,EventLoop *eventsLoop_);
     ~Acceptor();
 
 };
 */
 
-Acceptor::Acceptor(std::string &ip, u_int16_t port, EpollLoop *eventsLoop)
+Acceptor::Acceptor(std::string &ip, u_int16_t port, EventLoop *eventsLoop)
     : eventsLoop_(eventsLoop),
       servSocket_(new Socket(createnonblocking(), InetAddr(ip.c_str(), port))),
       acceptChannel_(new Channel(servSocket_.get(), eventsLoop_)) {

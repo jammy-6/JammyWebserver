@@ -2,7 +2,7 @@
 #define CONNECTION_H
 #include "Buffer.h"
 #include "Channel.h"
-#include "EpollLoop.h"
+#include "EventLoop.h"
 #include "Socket.h"
 #include "TimeStamp.h"
 #include "common.h"
@@ -13,7 +13,7 @@
 #include <string>
 
 class Channel;
-class EpollLoop;
+class EventLoop;
 class Connection;
 // Connection类的共享指针
 using spConnection = std::shared_ptr<Connection>;
@@ -22,8 +22,8 @@ using spConnection = std::shared_ptr<Connection>;
 class Connection : public std::enable_shared_from_this<Connection> {
 
 private:
-  //从外面传入的的EpollLoop，Connection与EpollLoop是多对一关系
-  EpollLoop *eventsLoop_;
+  //从外面传入的的EventLoop，Connection与EventLoop是多对一关系
+  EventLoop *eventsLoop_;
   //封装的与客户进行通信的channel
   std::unique_ptr<Channel> connectionChannel_;
   //客户端socket
@@ -53,7 +53,7 @@ private:
 
 public:
   //构造函数
-  Connection(EpollLoop *eventsLoop, Socket *cliSocket);
+  Connection(EventLoop *eventsLoop, Socket *cliSocket);
   //析构函数
   ~Connection();
   //获取当前连接的socket
@@ -69,7 +69,7 @@ public:
   void onClose();
 
   //获取当前连接对应的事件循环
-  EpollLoop *getEventLoop();
+  EventLoop *getEventLoop();
   //关闭当前连接，调用setIsClose和Channel::disableAll
   void removeChannel();
   //获取当前连接关闭状态
