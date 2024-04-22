@@ -1,0 +1,7 @@
+add_subdirectory(buffer)
+add_subdirectory(log)
+add_subdirectory(network)
+add_subdirectory(echo)
+add_subdirectory(http)
+add_subdirectory(sqlpool)
+add_subdirectory(test_client)
