@@ -1,0 +1,1 @@
+#define RESOURCE "${PROJECT_SOURCE_DIR}/resources"

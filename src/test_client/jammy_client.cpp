@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
   }
   std::string msg;
   int count = 0;
-  
+
   for (int i = 1; i <= 10000; i++) {
     while (inBuff.getMsg(msg)) {
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     bzero(buff, sizeof(buff));
     int num = recv(clisock, buff, sizeof(buff), 0);
     if (num > 0)
-      inBuff.append(buff, num);
+      inBuff.Append(buff, num);
     else if (num < 0 && errno == EWOULDBLOCK || errno == EAGAIN)
       break;
   }
