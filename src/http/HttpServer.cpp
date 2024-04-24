@@ -10,7 +10,8 @@ HttpServer::HttpServer(std::string ip, uint16_t port, int threadnum,
                        int workThreadNum)
     : tcpServer_(ip, port, HTTP, threadnum), tp_(workThreadNum, "WORK"),
       workThreadNum_(threadnum) {
-  SqlConnPool::Instance()->Init("127.0.0.1", 3306, "root", "root", "webserver");
+  SqlConnPool::Instance()->Init("121.37.41.140", 3306, "root", "920817290",
+                                "webserver");
   tcpServer_.setOnNewConnectionCallback(
       std::bind(&HttpServer::handleNewConnection, this, std::placeholders::_1));
   tcpServer_.setOnConnCloseCallback(

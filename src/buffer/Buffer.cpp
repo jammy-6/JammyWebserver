@@ -160,6 +160,14 @@ bool Buffer::getHttpMsg(std::string &msg) {
   if (idx != std::string::npos) {
     msg = std::string(Peek(), idx - readPos_);
     Retrieve(msg.size());
+    if ((idx = msg.find("Content-Length")) != std::string::npos) {
+      long len =
+          stol(std::string(msg.begin() + msg.find(":", idx) + 1, msg.end()));
+      std::cout << len << std::endl;
+      msg.append(Peek(), len);
+      Retrieve(len);
+    }
+
     return true;
   }
   return false;
