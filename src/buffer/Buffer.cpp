@@ -11,7 +11,10 @@ size_t Buffer::PrependableBytes() const { return readPos_; }
 const char *Buffer::Peek() const { return BeginPtr_() + readPos_; }
 
 void Buffer::Retrieve(size_t len) {
-  assert(len <= ReadableBytes());
+  if (len > ReadableBytes()) {
+    assert(len <= ReadableBytes());
+  }
+
   readPos_ += len;
   if (readPos_ == writePos_)
     RetrieveAll();
@@ -143,20 +146,20 @@ bool Buffer::getMsg(std::string &msg) {
 bool Buffer::getHttpMsg(std::string &msg) {
   if (ReadableBytes() < 2)
     return false;
-  int idx = buff_.find("\r\n\r\n", PrependableBytes());
+  std::string::size_type idx = buff_.find("\r\n\r\n", PrependableBytes());
   if (idx != std::string::npos) {
     idx += 4;
   }
   if (idx == std::string::npos) {
-    idx = buff_.find("\n\n");
+    idx = buff_.find("\n\n", PrependableBytes());
     if (idx != std::string::npos) {
       idx += 2;
     }
   }
 
   if (idx != std::string::npos) {
-    msg = std::string(Peek(), Peek() + idx);
-    RetrieveUntil(Peek() + idx);
+    msg = std::string(Peek(), idx - readPos_);
+    Retrieve(msg.size());
     return true;
   }
   return false;
