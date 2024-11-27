@@ -40,7 +40,7 @@ void EventLoop::run() {
   status_ = true;
   while (status_) {
     std::vector<Channel *> channels =
-        ep_->loop(10 * 1000); // 设置epoll_wait超时时长为10秒
+        ep_->loop(100* 1000); // 设置epoll_wait超时时长为10秒
     // 遍历发生事件的信道
     if (channels.size() == 0) {
       epollTimeOutCallback_();

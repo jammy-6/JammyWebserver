@@ -1,5 +1,6 @@
 #include "Channel.h"
 #include "EventLoop.h"
+#include <iostream>
 /*
 class Channel{
 private:
@@ -81,8 +82,14 @@ void Channel::handleEvent() {
   //读事件触发
   if (revents_ & EPOLLIN)
     readcallback_();
-  else if (revents_ & EPOLLOUT)
-    writecallback_();
+  else if (revents_ & EPOLLOUT){
+    if (writecallback_) {
+      writecallback_();
+    } else {
+      std::cout << "Callback function is null!" << std::endl;
+    }
+  }
+    
   else if (revents_ & EPOLLRDHUP) {
     closeCallBack_();
   }

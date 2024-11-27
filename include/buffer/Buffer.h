@@ -18,6 +18,8 @@ class Buffer {
 private:
   char *BeginPtr_();
   const char *BeginPtr_() const;
+  /// @brief 保证当前可写空间大于len，可能会涉及移动数据
+  /// @param len 
   void MakeSpace_(size_t len);
   // buff实际储存的数据
   std::string buff_;

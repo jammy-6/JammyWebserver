@@ -16,7 +16,7 @@ TcpServer::TcpServer(std::string ip, uint16_t port, TYPE type,int threadnum)
 
   //往线程池中添加任务
   for (int i = 0; i < threadnum; i++) {
-    subLoops_.emplace_back(new EventLoop(false, 5, 5));
+    subLoops_.emplace_back(new EventLoop(false, 500, 500));
     subLoops_[i]->setEpollTimeOutCallback(
         std::bind(&TcpServer::onEpollTimeOut, this, mainLoops_.get()));
     subLoops_[i]->setConnTimeoutCallBack(
