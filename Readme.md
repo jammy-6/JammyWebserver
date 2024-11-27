@@ -4,7 +4,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;webserver通过模块化进行了严格的任务划分，例如项目中用到了两个线程池，一个是IO线程池，一个是工作线程池（具体的业务逻辑），对于从reactor监听到的读写时间发生后，会先回调对应的IO函数并在IO线程池中进行处理，数据读写完毕后后又会回调工作线程池进行业务处理，业务处理完毕后再调用IO线程池写入响应，这样进一步划分职责项目后期也便于管理以及维护，并通过这种方式实现了类proactor的模式。
 
 整体服务流程展示如下：
-![](./JammyWebServer.jpg)
+![](./structor.jpg)
 
 # 项目亮点
 - 多线程支持：使用线程池处理客户端请求，提高并发处理能力。
@@ -34,7 +34,7 @@ cmake -S . -B build
 cmake --build build
 #运行项目
 ./JammyWebserver/build/src/http/http_server ip port
-
+#浏览器输入http://ip:port 进行访问。
 
 #回显模块测试
 #运行echo服务器
@@ -44,7 +44,9 @@ cmake --build build
 /bin/bash ./echoServerTest.sh
 #具体的进程数量可以在脚本中进行调整，但如果进程数量过多可能会导致服务器还没来得及服务，连接超时自动断开，进而日志没有输出。
 ```
-浏览器输入http://ip:port 进行访问。
+# UML类图展示
+仅做了一部分，仅供参考
+![](./uml.jpg)
 
 # 感谢
 项目借鉴了[TinyWebServer](https://github.com/qinguoyi/TinyWebServer)
