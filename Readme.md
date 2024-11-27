@@ -23,7 +23,7 @@
 - CMakeLists.txt：CMake构建脚本，用于配置和生成构建系统。
 
 # 编译与构建流程
-项目在ubuntu20.04下进行构建，需要pthread以及mysqlcppconn连接支持。
+项目在ubuntu20.04下使用cmake进行编译构建，需要pthread以及mysqlcppconn连接支持。
 ```cmake
 #安装mysql连接支持
 sudo apt install libmysqlcppconn-dev
@@ -40,6 +40,7 @@ cmake --build build
 #运行echo服务器
 ./build/src/echo/echo_server 127.0.0.1 8888
 #运行测试脚本
+#改脚本会创建100个客户端进程，每个进程向echo服务器发送1000句话，可以在./build/log中看到对应的输出日志
 /bin/bash ./echoServerTest.sh
 ```
 浏览器输入http://ip:port 进行访问。
