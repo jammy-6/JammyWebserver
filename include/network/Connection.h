@@ -1,17 +1,16 @@
 #ifndef CONNECTION_H
 #define CONNECTION_H
 #include "Buffer.h"
-#include "Channel.h"
-#include "EventLoop.h"
 #include "Socket.h"
 #include "TimeStamp.h"
+#include "Type.h"
 #include "common.h"
 #include <atomic>
 #include <functional>
 #include <iostream>
 #include <memory>
 #include <string>
-#include "Type.h"
+
 class Channel;
 class EventLoop;
 class Connection;
@@ -23,7 +22,6 @@ using spConnection = std::shared_ptr<Connection>;
 class Connection : public std::enable_shared_from_this<Connection> {
 
 private:
-  
   //当前连接的类型
   TYPE type_;
   //从外面传入的的EventLoop，Connection与EventLoop是多对一关系
@@ -57,7 +55,7 @@ private:
 
 public:
   //构造函数
-  Connection(EventLoop *eventsLoop, Socket *cliSocket,TYPE type);
+  Connection(EventLoop *eventsLoop, Socket *cliSocket, TYPE type);
   //析构函数
   ~Connection();
   //获取当前连接的socket

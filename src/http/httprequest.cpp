@@ -188,15 +188,16 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd,
     return false;
   }
   LOG_INFO("Verify name:%s pwd:%s", name.c_str(), pwd.c_str());
-  MYSQL *sql;
+  sql::Connection *sql;
   SqlConnRAII(&sql, SqlConnPool::Instance());
   assert(sql);
 
   bool flag = false;
   unsigned int j = 0;
   char order[256] = {0};
-  MYSQL_FIELD *fields = nullptr;
-  MYSQL_RES *res = nullptr;
+  // MYSQL_FIELD *fields = nullptr;
+  // sql::ResultSet *res = nullptr;
+  std::unique_ptr<sql::Statement> statement(sql->createStatement());
 
   if (!isLogin) {
     flag = true;
@@ -206,18 +207,16 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd,
            "SELECT username, password FROM user WHERE username='%s' LIMIT 1",
            name.c_str());
   LOG_DEBUG("%s", order);
-
-  if (mysql_query(sql, order)) {
-    mysql_free_result(res);
+  std::unique_ptr<sql::ResultSet> result(statement->executeQuery(order));
+  if (result == nullptr) {
+    result->close();
     return false;
   }
-  res = mysql_store_result(sql);
-  j = mysql_num_fields(res);
-  fields = mysql_fetch_fields(res);
 
-  while (MYSQL_ROW row = mysql_fetch_row(res)) {
-    LOG_DEBUG("MYSQL ROW: %s %s", row[0], row[1]);
-    string password(row[1]);
+  while (result->next()) {
+    std::string username = result->getString("username");
+    std::string password = result->getString("password");
+    LOG_DEBUG("MYSQL ROW: %s %s", username.c_str(), password.c_str());
     /* 注册行为 且 用户名未被使用*/
     if (isLogin) {
       if (pwd == password) {
@@ -231,7 +230,7 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd,
       LOG_DEBUG("user used!");
     }
   }
-  mysql_free_result(res);
+  result->close();
 
   /* 注册行为 且 用户名未被使用*/
   if (!isLogin && flag == true) {
@@ -241,7 +240,7 @@ bool HttpRequest::UserVerify(const string &name, const string &pwd,
              "INSERT INTO user(username, password) VALUES('%s','%s')",
              name.c_str(), pwd.c_str());
     LOG_DEBUG("%s", order);
-    if (mysql_query(sql, order)) {
+    if (statement->execute(order)) {
       LOG_DEBUG("Insert error!");
       flag = false;
     }

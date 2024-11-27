@@ -1,10 +1,12 @@
+#include "Channel.h"
+#include "Connection.h"
 #include "EventLoop.h"
 #include "Socket.h"
 #include <vector>
-
 EventLoop::EventLoop(bool isMainLoop, time_t clock, time_t timeout)
     : isMainLoop_(isMainLoop), clock_(clock), timeout_(timeout),
-      ep_(new Epoll()), connOutBuffChannel_(new Channel(
+      ep_(new Epoll()), 
+      connOutBuffChannel_(new Channel(
                             new Socket(eventfd(0, 0), InetAddr()), this)),
       timerChannel_(
           new Channel(new Socket(timerfd_create(CLOCK_MONOTONIC,

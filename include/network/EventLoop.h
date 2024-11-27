@@ -1,7 +1,6 @@
 #ifndef EPOLL_LOOP_H
 #define EPOLL_LOOP_H
-#include "Channel.h"
-#include "Connection.h"
+
 #include "Epoll.h"
 #include "InetAddr.h"
 #include "Socket.h"

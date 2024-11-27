@@ -14,4 +14,6 @@ include_directories(BEFORE
     "include/sqlpool"
     "build"
 )
+#clang编译器添加
+#add_compile_options(-fstandalone-debug)
 add_subdirectory(src)

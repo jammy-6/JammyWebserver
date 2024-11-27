@@ -3,7 +3,7 @@
 
 EchoServer::EchoServer(std::string ip, uint16_t port, int threadnum,
                        int workThreadNum)
-    : tcpServer_(ip, port, ECHO,threadnum), tp_(workThreadNum, "WORK"),
+    : tcpServer_(ip, port, ECHO, threadnum), tp_(workThreadNum, "WORK"),
       workThreadNum_(threadnum) {
 
   tcpServer_.setOnNewConnectionCallback(

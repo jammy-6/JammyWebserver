@@ -16,24 +16,30 @@ private:
 };*/
 
 Epoll::~Epoll() { close(epollfd_); }
-Epoll::Epoll(int size) {
+Epoll::Epoll(int size)
+{
   epollfd_ = epoll_create(16);
   bzero(&evs_, sizeof(evs_));
 }
-void Epoll::updateChannel(Channel *ch) {
-  //设置监听事件
+void Epoll::updateChannel(Channel *ch)
+{
+  // 设置监听事件
   struct epoll_event ev;
   ev.data.ptr = ch;
   ev.events = ch->events();
-  if (ch->isInEpoll()) {
+  if (ch->isInEpoll())
+  {
     epoll_ctl(epollfd_, EPOLL_CTL_MOD, ch->fd(), &ev);
-  } else {
+  }
+  else
+  {
     epoll_ctl(epollfd_, EPOLL_CTL_ADD, ch->fd(), &ev);
     ch->setInEpoll(true);
   }
 }
 
-void Epoll::removeChannel(Channel *ch) {
+void Epoll::removeChannel(Channel *ch)
+{
   epoll_ctl(epollfd_, EPOLL_CTL_DEL, ch->fd(), nullptr);
   ch->setInEpoll(false);
 }
@@ -54,19 +60,24 @@ void Epoll::removeChannel(Channel *ch) {
 //     return curevs;
 // }
 
-std::vector<Channel *> Epoll::loop(int timeout) {
+std::vector<Channel *> Epoll::loop(int timeout)
+{
   std::vector<Channel *> channels;
   int nums = epoll_wait(epollfd_, evs_, MAX_EVENTS, timeout);
-  if (nums == 0) {
-    //超时事件
-    // printf("[SERVER] : Epoll Timeout!\n");
+  if (nums == 0)
+  {
+    // 超时事件
+    //  printf("[SERVER] : Epoll Timeout!\n");
     return channels;
-  } else if (nums < 0) { // epoll失败
+  }
+  else if (nums < 0)
+  { // epoll失败
     printf("File : %s, Function : %s,Line : %d, Errno : %d\n", __FILE__,
            __FUNCTION__, __LINE__, errno);
     return channels;
   }
-  for (int i = 0; i < nums; i++) {
+  for (int i = 0; i < nums; i++)
+  {
     Channel *curChannel = ((Channel *)evs_[i].data.ptr);
     curChannel->setRevents(evs_[i].events);
     channels.push_back(curChannel);

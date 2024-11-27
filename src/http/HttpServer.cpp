@@ -12,6 +12,7 @@ HttpServer::HttpServer(std::string ip, uint16_t port, int threadnum,
       workThreadNum_(threadnum) {
   SqlConnPool::Instance()->Init("121.37.41.140", 3306, "root", "920817290",
                                 "webserver");
+  std::string path = "/home/chen/CLionProjects/webserver/resources";
   tcpServer_.setOnNewConnectionCallback(
       std::bind(&HttpServer::handleNewConnection, this, std::placeholders::_1));
   tcpServer_.setOnConnCloseCallback(
