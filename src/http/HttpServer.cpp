@@ -10,9 +10,9 @@ HttpServer::HttpServer(std::string ip, uint16_t port, int threadnum,
                        int workThreadNum)
     : tcpServer_(ip, port, HTTP, threadnum), tp_(workThreadNum, "WORK"),
       workThreadNum_(threadnum) {
-  SqlConnPool::Instance()->Init("121.37.41.140", 3306, "root", "920817290",
+  SqlConnPool::Instance()->Init("192.168.0.202", 3306, "root", "root",
                                 "webserver");
-  std::string path = "/home/chen/CLionProjects/webserver/resources";
+  std::string path = "/mnt/repo/JammyWebserver/resources";
   tcpServer_.setOnNewConnectionCallback(
       std::bind(&HttpServer::handleNewConnection, this, std::placeholders::_1));
   tcpServer_.setOnConnCloseCallback(
