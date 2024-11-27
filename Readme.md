@@ -34,8 +34,15 @@ cmake -S . -B build
 cmake --build build
 #运行项目
 ./JammyWebserver/build/src/http/http_server ip port
+
+
+#回显模块测试
+#运行echo服务器
+./build/src/echo/echo_server 127.0.0.1 8888
+#运行测试脚本
+/bin/bash ./echoServerTest.sh
 ```
-浏览器输入http://ip:port进行访问。
+浏览器输入http://ip:port 进行访问。
 
 # 感谢
 项目借鉴了[TinyWebServer](https://github.com/qinguoyi/TinyWebServer)
